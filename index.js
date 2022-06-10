@@ -1,7 +1,4 @@
 const express = require("express");
-const oracledb = require("oracledb");
-const dbConfig = require("./dbconfig.js");
-
 const app = express();
 const port = 5000;
 
@@ -9,7 +6,7 @@ app.listen(port, () => {
   console.log(`Mov server listening at http://localhost:${port}`);
 }); //포트 5050번에서 이 앱을 실행한다.
 
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
   return res.status(200).send("hing");
 });
 
