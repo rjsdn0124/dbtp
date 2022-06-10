@@ -1,10 +1,20 @@
 const express = require("express");
+const odb = require("oracledb");
+
+const config = {
+  user: "d201802145",
+
+  password: "9378",
+
+  connectString: "0.0.0.0/xe",
+};
+
 const app = express();
-const port = 80;
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`Mov server listening at http://localhost:${port}`);
-}); //포트 5050번에서 이 앱을 실행한다.
+});
 
 app.get("/", (req, res) => {
   return res.status(200).send("hing");
