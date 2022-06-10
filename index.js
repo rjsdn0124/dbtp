@@ -14,26 +14,14 @@ app.listen(port, () => {
   console.log(`Mov server listening at http://localhost:${port}`);
 });
 
-app.get("/", (req, res) => {
-  odb.getConnection(config, function (err, connection) {
-    if (err) {
-      console.error(err.message);
-      return;
-    }
-    connection.execute("SELECT * FROM TEAM", function (err, result) {
-      if (err) {
-        console.error(err.message);
-        doRelease(connection);
-        return;
-      }
-      console.log(result.metaData);
-      console.log(result.rows);
-
-      doRelease(connection);
-      return res.status(200).send(result);
-    });
-  });
-  return res.status(200).send("hing");
+app.get("/", async (req, res) => {
+  try {
+    const conn = await odb.getConnection(config);
+    const result = await conn.execute("SELECT * FROM TEAM");
+  } catch (e) {
+    return res.status(400).send(e);
+  }
+  return res.status(200).send(result);
 });
 
 app.post("/login", (req, res) => {
