@@ -3,7 +3,7 @@ const oracledb = require("oracledb");
 const dbConfig = require("./dbconfig.js");
 
 const app = express();
-const port = 5050;
+const port = 5000;
 
 app.listen(port, () => {
   console.log(`Mov server listening at http://localhost:${port}`);
@@ -12,7 +12,7 @@ app.listen(port, () => {
 app.post("/login", (req, res) => {
   return res.status(200).send();
 });
-app.get("/book", (req, res) => {
+app.post("/book", (req, res) => {
   return res.status(200).send();
 });
 app.get("/list", (req, res) => {
